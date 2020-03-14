@@ -13,7 +13,7 @@ var _ = Describe("Pricing", func() {
 	var c *Client
 
 	BeforeEach(func() {
-		c = New("super-secret-api-key")
+		c = NewClient("super-secret-api-key")
 	})
 
 	JustBeforeEach(func() {

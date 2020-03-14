@@ -13,7 +13,7 @@ type Client struct {
 }
 
 // New returns a new client configured with the necessary auth and address etc.
-func New(key string) (c *Client) {
+func NewClient(key string) (c *Client) {
 	rc := resty.New().
 		SetHostURL(HostURL).
 		SetAuthToken(key)
