@@ -7,9 +7,9 @@ import (
 )
 
 // GetPricing returns pricing for the given instruments.
-func (c *Client) GetPricing(accountID string, instruments []string) (prices []ClientPrice, err error) {
+func (c *Client) GetPricing(accountID string, instruments []string) (prices []Pricing, err error) {
 	result := &struct {
-		Prices []ClientPrice
+		Prices []Pricing
 	}{}
 
 	_, err = c.rc.R().
@@ -27,8 +27,8 @@ func (c *Client) GetPricing(accountID string, instruments []string) (prices []Cl
 }
 
 // GetPricingStream returns pricing for the given instruments.
-func (c *Client) GetPricingStream(accountID string, instruments []string) (ch chan ClientPrice, err error) {
-	ch = make(chan ClientPrice)
+func (c *Client) GetPricingStream(accountID string, instruments []string) (ch chan Pricing, err error) {
+	ch = make(chan Pricing)
 
 	resp, err := c.rc.R().
 		SetDoNotParseResponse(true).
@@ -44,7 +44,7 @@ func (c *Client) GetPricingStream(accountID string, instruments []string) (ch ch
 				continue
 			}
 
-			var price ClientPrice
+			var price Pricing
 			if err := json.Unmarshal(b, &price); err != nil {
 				continue
 			}

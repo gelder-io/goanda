@@ -7,8 +7,8 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-// ClientPrice represents an account-specific price of an instrument.
-type ClientPrice struct {
+// Pricing represents an account-specific price of an instrument.
+type Pricing struct {
 	Instrument string
 	Tradeable  bool
 	Bids       []PriceBucket
@@ -16,11 +16,11 @@ type ClientPrice struct {
 	Time       time.Time
 }
 
-func (p *ClientPrice) UnmarshalJSON(b []byte) (err error) {
-	type _ClientPrice ClientPrice
+func (p *Pricing) UnmarshalJSON(b []byte) (err error) {
+	type _Pricing Pricing
 
 	rawPrice := struct {
-		_ClientPrice
+		_Pricing
 
 		Time string
 	}{}
@@ -29,7 +29,7 @@ func (p *ClientPrice) UnmarshalJSON(b []byte) (err error) {
 		return
 	}
 
-	*p = ClientPrice(rawPrice._ClientPrice)
+	*p = Pricing(rawPrice._Pricing)
 
 	if p.Time, err = time.Parse(time.RFC3339Nano, rawPrice.Time); err != nil {
 		return
