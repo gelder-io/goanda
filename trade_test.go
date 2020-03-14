@@ -1,6 +1,8 @@
 package goanda_test
 
 import (
+	"time"
+
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/shopspring/decimal"
@@ -51,7 +53,7 @@ var _ = Describe("Trade", func() {
 			Expect(trades[0].CurrentUnits).To(Equal(decimal.NewFromFloat(100.1)))
 			Expect(trades[0].RealizedPL).To(Equal(decimal.NewFromFloat(0.00001)))
 			Expect(trades[0].UnrealizedPL).To(Equal(decimal.NewFromFloat(-0.01438)))
-			Expect(trades[0].OpenTime).To(Equal("2016-06-22T18:41:48.258142231Z"))
+			Expect(trades[0].OpenTime.Format(time.RFC3339Nano)).To(Equal("2016-06-22T18:41:48.258142231Z"))
 		})
 	})
 })

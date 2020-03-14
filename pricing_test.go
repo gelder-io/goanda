@@ -1,6 +1,8 @@
 package goanda_test
 
 import (
+	"time"
+
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/shopspring/decimal"
@@ -32,7 +34,7 @@ var _ = Describe("Pricing", func() {
 			Expect(err).ToNot(HaveOccurred())
 			Expect(prices).To(HaveLen(1))
 			Expect(prices[0].Instrument).To(Equal("EUR_USD"))
-			Expect(prices[0].Time).To(Equal("2016-06-22T18:41:36.201836422Z"))
+			Expect(prices[0].Time.Format(time.RFC3339Nano)).To(Equal("2016-06-22T18:41:36.201836422Z"))
 			Expect(prices[0].Tradeable).To(Equal(true))
 			Expect(prices[0].Bids).To(HaveLen(2))
 			Expect(prices[0].Bids[0].Liquidity).To(Equal(10000000))
