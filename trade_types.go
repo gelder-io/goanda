@@ -9,9 +9,11 @@ import (
 
 // Trade represents a trade of an account.
 type Trade struct {
-	ID                    string
-	Instrument            string
-	State                 TradeState
+	ID         string
+	Instrument string
+
+	State TradeState
+
 	Price                 decimal.Decimal
 	InitialUnits          decimal.Decimal
 	InitialMarginRequired decimal.Decimal
@@ -20,8 +22,10 @@ type Trade struct {
 	UnrealizedPL          decimal.Decimal
 	MarginUsed            decimal.Decimal
 	AverageClosePrice     decimal.Decimal
-	OpenTime              time.Time
-	CloseTime             time.Time
+
+	OpenTime  time.Time
+	CloseTime time.Time
+
 	ClosingTransactionIDs []string
 }
 

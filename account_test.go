@@ -47,10 +47,13 @@ var _ = Describe("Account", func() {
 			Expect(acc.ID).To(Equal("first"))
 			Expect(acc.Alias).To(Equal("My Account #1"))
 			Expect(acc.Currency).To(Equal("CHF"))
+
 			Expect(acc.OpenTradeCount).To(Equal(0))
 			Expect(acc.OpenPositionCount).To(Equal(0))
 			Expect(acc.PendingOrderCount).To(Equal(0))
+
 			Expect(acc.HedgingEnabled).To(Equal(false))
+
 			Expect(acc.MarginRate).To(Equal(decimal.NewFromFloat(0.02)))
 			Expect(acc.UnrealizedPL).To(Equal(decimal.NewFromFloat(0.00001)))
 			Expect(acc.NAV).To(Equal(decimal.NewFromFloat(43650.78835)))
@@ -65,6 +68,7 @@ var _ = Describe("Account", func() {
 			Expect(acc.Balance).To(Equal(decimal.NewFromFloat(43650.78835)))
 			Expect(acc.PL).To(Equal(decimal.NewFromFloat(0.00001)))
 			Expect(acc.ResettablePL).To(Equal(decimal.NewFromFloat(0.00001)))
+
 			Expect(acc.Trades).To(BeEmpty())
 			Expect(acc.Positions).To(BeEmpty())
 			// Expect(acc.Orders).To(BeEmpty())
