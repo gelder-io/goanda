@@ -4,13 +4,16 @@ import "github.com/shopspring/decimal"
 
 // Account holds complete account information.
 type Account struct {
-	ID                         string
-	Alias                      string
-	Currency                   string
-	OpenTradeCount             int
-	OpenPositionCount          int
-	PendingOrderCount          int
-	HedgingEnabled             bool
+	ID       string
+	Alias    string
+	Currency string
+
+	OpenTradeCount    int
+	OpenPositionCount int
+	PendingOrderCount int
+
+	HedgingEnabled bool
+
 	MarginRate                 decimal.Decimal
 	UnrealizedPL               decimal.Decimal
 	NAV                        decimal.Decimal
@@ -25,9 +28,10 @@ type Account struct {
 	Balance                    decimal.Decimal
 	PL                         decimal.Decimal
 	ResettablePL               decimal.Decimal
-	Trades                     []Trade
-	Positions                  []Position
-	// Orders                     []Order
+
+	Trades    []Trade
+	Positions []Position
+	// Orders    []Order
 }
 
 // AccountProperties holds properties related to an account.

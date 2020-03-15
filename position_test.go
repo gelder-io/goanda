@@ -42,15 +42,19 @@ var _ = Describe("Position", func() {
 			positions, err := c.GetPositions("first")
 
 			Expect(err).ToNot(HaveOccurred())
+
 			Expect(positions).To(HaveLen(1))
+
 			Expect(positions[0].Instrument).To(Equal("EUR_CHF"))
 			Expect(positions[0].PL).To(Equal(decimal.NewFromFloat(-486.16662)))
 			Expect(positions[0].ResettablePL).To(Equal(decimal.NewFromFloat(-486.16662)))
 			Expect(positions[0].UnrealizedPL).To(Equal(decimal.NewFromFloat(0.00001)))
+
 			Expect(positions[0].Long.PL).To(Equal(decimal.NewFromFloat(-483.91941)))
 			Expect(positions[0].Long.ResettablePL).To(Equal(decimal.NewFromFloat(-483.91941)))
 			Expect(positions[0].Long.Units).To(Equal(decimal.NewFromFloat(0)))
 			Expect(positions[0].Long.UnrealizedPL).To(Equal(decimal.NewFromFloat(0.00001)))
+
 			Expect(positions[0].Short.PL).To(Equal(decimal.NewFromFloat(-2.24721)))
 			Expect(positions[0].Short.ResettablePL).To(Equal(decimal.NewFromFloat(-2.24721)))
 			Expect(positions[0].Short.Units).To(Equal(decimal.NewFromFloat(0)))

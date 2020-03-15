@@ -33,14 +33,17 @@ var _ = Describe("Pricing", func() {
 
 			Expect(err).ToNot(HaveOccurred())
 			Expect(prices).To(HaveLen(1))
+
 			Expect(prices[0].Instrument).To(Equal("EUR_USD"))
 			Expect(prices[0].Time.Format(time.RFC3339Nano)).To(Equal("2016-06-22T18:41:36.201836422Z"))
 			Expect(prices[0].Tradeable).To(Equal(true))
+
 			Expect(prices[0].Bids).To(HaveLen(2))
 			Expect(prices[0].Bids[0].Liquidity).To(Equal(10000000))
 			Expect(prices[0].Bids[0].Price).To(Equal(decimal.NewFromFloat(1.13015)))
 			Expect(prices[0].Bids[1].Liquidity).To(Equal(10000000))
 			Expect(prices[0].Bids[1].Price).To(Equal(decimal.NewFromFloat(1.13013)))
+
 			Expect(prices[0].Asks).To(HaveLen(2))
 			Expect(prices[0].Asks[0].Liquidity).To(Equal(10000000))
 			Expect(prices[0].Asks[0].Price).To(Equal(decimal.NewFromFloat(1.13028)))
