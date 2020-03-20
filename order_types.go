@@ -2,7 +2,7 @@ package goanda
 
 import "github.com/shopspring/decimal"
 
-type orderRequest struct {
+type OrderRequest struct {
 	Type         OrderType
 	Instrument   string
 	Units        decimal.Decimal
@@ -11,39 +11,39 @@ type orderRequest struct {
 }
 
 type MarketOrderRequest struct {
-	orderRequest
+	OrderRequest
 
 	PriceBound decimal.Decimal
 }
 
 // TODO: Fill this with its fields.
 type LimitOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // TODO: Fill this with its fields.
 type StopOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // TODO: Fill this with its fields.
 type MarketIfTouchedOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // TODO: Fill this with its fields.
 type TakeProfitOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // TODO: Fill this with its fields.
 type StopLossOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // TODO: Fill this with its fields.
 type TrailingStopLossOrderRequest struct {
-	orderRequest
+	OrderRequest
 }
 
 // OrderType represents the type of order to create.
