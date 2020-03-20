@@ -31,3 +31,18 @@ func (c *Client) GetAccount(accountID string) (acc Account, err error) {
 
 	return
 }
+
+// GetAccountInstruments returns the instruments that an account can trade.
+func (c *Client) GetAccountInstruments(accountID string) (instruments []Instrument, err error) {
+	result := &struct {
+		Instruments []Instrument
+	}{}
+
+	if _, err = c.rc.R().SetResult(result).Get("/accounts/" + accountID + "/instruments"); err != nil {
+		return
+	}
+
+	instruments = result.Instruments
+
+	return
+}
