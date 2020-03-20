@@ -74,6 +74,26 @@ var _ = Describe("Account", func() {
 			// Expect(acc.Orders).To(BeEmpty())
 		})
 	})
+
+	Describe("GetAccountInstruments", func() {
+		It("correctly returns account instruments", func() {
+			gock.New(HostURL).
+				Get("/accounts/first/instruments").
+				Reply(200).
+				JSON(getFirstAccountInstrumentsResponse)
+
+			instruments, err := c.GetAccountInstruments("first")
+
+			Expect(err).ToNot(HaveOccurred())
+			Expect(instruments).To(HaveLen(2))
+
+			Expect(instruments[0].Name).To(Equal("EUR_CHF"))
+			Expect(instruments[0].DisplayName).To(Equal("EUR/CHF"))
+
+			Expect(instruments[1].Name).To(Equal("EUR_USD"))
+			Expect(instruments[1].DisplayName).To(Equal("EUR/USD"))
+		})
+	})
 })
 
 const getAccountsResponse = `
@@ -119,4 +139,38 @@ const getFirstAccountResponse = `
     "positions": [], 
     "orders": []
   } 
+}`
+
+const getFirstAccountInstrumentsResponse = `
+{
+  "instruments": [
+    {
+      "displayName": "EUR/CHF", 
+      "displayPrecision": 5, 
+      "marginRate": "0.05", 
+      "maximumOrderUnits": "100000000", 
+      "maximumPositionSize": "0", 
+      "maximumTrailingStopDistance": "1.00000", 
+      "minimumTradeSize": "1", 
+      "minimumTrailingStopDistance": "0.00050", 
+      "name": "EUR_CHF", 
+      "pipLocation": -4, 
+      "tradeUnitsPrecision": 0, 
+      "type": "CURRENCY"
+    }, 
+    {
+      "displayName": "EUR/USD", 
+      "displayPrecision": 5, 
+      "marginRate": "0.02", 
+      "maximumOrderUnits": "100000000", 
+      "maximumPositionSize": "0", 
+      "maximumTrailingStopDistance": "1.00000", 
+      "minimumTradeSize": "1", 
+      "minimumTrailingStopDistance": "0.00050", 
+      "name": "EUR_USD", 
+      "pipLocation": -4, 
+      "tradeUnitsPrecision": 0, 
+      "type": "CURRENCY"
+    } 
+	]
 }`
