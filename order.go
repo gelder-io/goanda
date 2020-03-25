@@ -1,6 +1,8 @@
 package goanda
 
-import "errors"
+import (
+	"errors"
+)
 
 // PlaceOrder places the given order.
 func (c *Client) PlaceOrder(accountID string, order interface{}) (err error) {
@@ -9,7 +11,9 @@ func (c *Client) PlaceOrder(accountID string, order interface{}) (err error) {
 		return
 	}
 
-	request := &struct{ Order interface{} }{order}
+	request := &struct {
+		Order interface{} `json:"order"`
+	}{Order: order}
 
 	if _, err = c.rc.R().SetBody(request).Post("/accounts/" + accountID + "/orders"); err != nil {
 		return

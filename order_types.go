@@ -3,17 +3,16 @@ package goanda
 import "github.com/shopspring/decimal"
 
 type OrderRequest struct {
-	Type         OrderType
-	Instrument   string
-	Units        decimal.Decimal
-	TimeInForce  TimeInForce
-	PositionFill OrderPositionFill
+	Type         OrderType         `json:"type"`
+	Instrument   string            `json:"instrument"`
+	Units        decimal.Decimal   `json:"units,string"`
+	TimeInForce  TimeInForce       `json:"timeInForce"`
+	PositionFill OrderPositionFill `json:"positionFill"`
 }
 
+// TODO: Fill this with its fields.
 type MarketOrderRequest struct {
 	OrderRequest
-
-	PriceBound decimal.Decimal
 }
 
 // TODO: Fill this with its fields.
