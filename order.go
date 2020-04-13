@@ -3,7 +3,7 @@ package goanda
 import "errors"
 
 // PlaceOrder places the given order.
-func (c *Client) PlaceOrder(accountID string, order interface{}) (err error) {
+func (c *Client) PlaceOrder(accountID string, order interface{}) (orderID int, err error) {
 	if !isOrderRequest(order) {
 		err = errors.New("given order is not an order request")
 		return
@@ -16,6 +16,8 @@ func (c *Client) PlaceOrder(accountID string, order interface{}) (err error) {
 	}
 
 	// TODO: Check what the transactions are in the response -- perhaps the order was cancelled.
+
+	// TODO: Set the orderID.
 
 	return
 }
